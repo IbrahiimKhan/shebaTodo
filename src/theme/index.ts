@@ -1,21 +1,32 @@
 import {extendTheme} from 'native-base';
 
-export const theme = extendTheme({
-  colors: {
-    // Add new color
-    primary: {
-      100: '#C5E4F3',
-      200: '#A2D4EC',
-      300: '#7AC1E4',
-      400: '#47A9DA',
-      500: '#0088CC',
-      600: '#007AB8',
-      700: '#006BA1',
-      800: '#005885',
-      900: '#003F5E',
+export const customTheme = extendTheme({
+  fontConfig: {
+    Poppins: {
+      300: {
+        normal: 'Poppins-Light',
+      },
+      400: {
+        normal: 'Poppins-Regular',
+      },
+      500: {
+        normal: 'Poppins-Medium',
+      },
+      600: {
+        normal: 'Poppins-SemiBold',
+      },
+      700: {
+        normal: 'Poppins-Bold',
+      },
+      800: {
+        normal: 'Poppins-ExtraBold',
+      },
     },
-    amber: {
-      400: '#d97706',
-    },
+  },
+
+  fonts: {
+    heading: 'Poppins',
+    body: 'Poppins',
+    liti: 'Poppins',
   },
 });

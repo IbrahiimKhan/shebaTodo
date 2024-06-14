@@ -1,8 +1,8 @@
 import {NativeBaseProvider} from 'native-base';
 import React, {useEffect} from 'react';
 import {LogBox} from 'react-native';
-import {theme} from './theme';
 import Navigator from './navigators';
+import {customTheme} from './theme';
 
 const App = () => {
   useEffect(() => {
@@ -12,7 +12,7 @@ const App = () => {
   }, []);
 
   return (
-    <NativeBaseProvider theme={theme}>
+    <NativeBaseProvider theme={customTheme}>
       <Navigator />
     </NativeBaseProvider>
   );
