@@ -1,12 +1,9 @@
+import Header from '@/components/atoms/Header';
+import {CheckIcon, Text} from 'native-base';
 import React from 'react';
-import {Text, View} from 'react-native';
 
 export const RegisterScreen = () => {
-  return (
-    <View>
-      <Text>RegisterScreen</Text>
-    </View>
-  );
+  return <Header title="Registration" right={() => <Text />} />;
 };
 
 export default RegisterScreen;
