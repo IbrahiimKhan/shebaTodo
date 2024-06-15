@@ -9,8 +9,9 @@ import {
   Text,
   WarningOutlineIcon,
 } from 'native-base';
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
+import auth from '@react-native-firebase/auth';
 
 type SignUpScreenProps = UnAuthenticatedStackNavigatorScreenProps<'Login'>;
 
@@ -18,6 +19,7 @@ export const SignUpScreen: FC<SignUpScreenProps> = ({navigation}) => {
   const navigateToLogInScreen = () => {
     navigation.navigate('Login');
   };
+
   return (
     <Screen>
       <Header title="Sign Up" right={() => <Box />} />
