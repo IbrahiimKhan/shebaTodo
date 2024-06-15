@@ -11,10 +11,16 @@ const Stack =
 export const UnAuthenticatedNavigator = (): ReactElement => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Register" component={SignUpScreen} />
       <Stack.Screen
         options={{
-          animation: 'slide_from_right',
+          animation: 'slide_from_left',
+        }}
+        name="Register"
+        component={SignUpScreen}
+      />
+      <Stack.Screen
+        options={{
+          animation: 'slide_from_left',
         }}
         name="Login"
         component={LoginScreen}
