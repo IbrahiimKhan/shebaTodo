@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
-import {ArrowBackIcon, HStack, Text} from 'native-base';
+import {ArrowBackIcon, Box, HStack, Text} from 'native-base';
 import React, {FC, ReactElement} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 
 type HeaderProps = {
   left?: () => ReactElement;
@@ -31,7 +31,7 @@ export const Header: FC<HeaderProps> = ({left, right, title}) => {
         fontFamily="heading">
         {title}
       </Text>
-      {right ? right() : null}
+      {right ? right() : <Box />}
     </HStack>
   );
 };

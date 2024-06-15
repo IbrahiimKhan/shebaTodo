@@ -9655,6 +9655,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-mmkv@npm:beta":
+  version: 3.0.0-beta.6
+  resolution: "react-native-mmkv@npm:3.0.0-beta.6"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 153c27929747f47b754027db14ac01ee31696ab9d8f88964b4bb95376eddb5e066e76aba5f882b0a4660f7e0e6bf06548a1376c3480914540017816de96a658d
+  languageName: node
+  linkType: hard
+
 "react-native-safe-area-context@npm:^4.10.4":
   version: 4.10.4
   resolution: "react-native-safe-area-context@npm:4.10.4"
@@ -9688,6 +9698,16 @@ __metadata:
     react: "*"
     react-native: ">=0.50.0"
   checksum: 20a9b2987bf5836821e51a0497fc2b598a859032fe168f80c6dcab3727bf26dc34bcb3197059e1e5775dfc91b6b20633502292d8c82e9aeb3e76807d03e0189d
+  languageName: node
+  linkType: hard
+
+"react-native-toast-message@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "react-native-toast-message@npm:2.2.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: b286b8d5ca0f21737c2e0a8e9c2d6dab2c06a3895335aa541c69eeb42d526cc6f3951069e59d8d346d3e6cafb8feaa450c35b0efe7c3d51ff81351d1477e71eb
   languageName: node
   linkType: hard
 
@@ -10326,9 +10346,11 @@ __metadata:
     prettier: 2.8.8
     react: 18.2.0
     react-native: 0.74.2
+    react-native-mmkv: beta
     react-native-safe-area-context: ^4.10.4
     react-native-screens: ^3.31.1
     react-native-svg: 12.1.1
+    react-native-toast-message: ^2.2.0
     react-native-vector-icons: ^10.1.0
     react-test-renderer: 18.2.0
     typescript: 5.0.4

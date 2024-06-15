@@ -1,68 +1,134 @@
+// SignUpScreen.tsx
 import {Header, Screen} from '@/components';
+import useHandleAuthentication from '@/hooks/useHandleAuthentication';
+import {signupSchema} from '@/schema/validationSchema';
 import {UnAuthenticatedStackNavigatorScreenProps} from '@/types/navigation';
+import {Formik} from 'formik';
 import {
   Box,
   Button,
   FormControl,
   HStack,
+  Image,
   Input,
   Text,
   WarningOutlineIcon,
 } from 'native-base';
-import React, {FC, useEffect} from 'react';
+import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import auth from '@react-native-firebase/auth';
 
 type SignUpScreenProps = UnAuthenticatedStackNavigatorScreenProps<'Login'>;
 
-export const SignUpScreen: FC<SignUpScreenProps> = ({navigation}) => {
+export const SignUpScreen: React.FC<SignUpScreenProps> = ({navigation}) => {
+  const {signUp} = useHandleAuthentication();
+
   const navigateToLogInScreen = () => {
     navigation.navigate('Login');
   };
 
   return (
     <Screen>
-      <Header title="Sign Up" right={() => <Box />} />
-      <Box mx={5} flex={1} justifyContent="center">
-        <Box flex={1} justifyContent="center">
-          <FormControl w="100%" my={2}>
-            <FormControl.Label fontFamily="body">Name</FormControl.Label>
-            <Input py={3} placeholder="Enter your name" />
-            <FormControl.ErrorMessage
-              leftIcon={<WarningOutlineIcon size="xs" />}>
-              Try different from previous passwords.
-            </FormControl.ErrorMessage>
-          </FormControl>
+      <Header title="Sign Up" />
+      <Image
+        my={10}
+        resizeMode="contain"
+        alignSelf="center"
+        source={require('@assets/images/logo.png')}
+        size="xl"
+        alt="logo"
+      />
+      <Box px={5} flex={1}>
+        <Formik
+          initialValues={{name: '', email: '', password: ''}}
+          validationSchema={signupSchema}
+          onSubmit={signUp}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <>
+              <FormControl my={2} isInvalid={!!(errors.name && touched.name)}>
+                <FormControl.Label>Your Name</FormControl.Label>
+                <Input
+                  py={3}
+                  placeholder="Enter your name"
+                  onChangeText={handleChange('name')}
+                  onBlur={handleBlur('name')}
+                  value={values.name}
+                />
+                {errors.name && touched.name && (
+                  <FormControl.ErrorMessage
+                    leftIcon={<WarningOutlineIcon size="xs" />}>
+                    {errors.name}
+                  </FormControl.ErrorMessage>
+                )}
+              </FormControl>
 
-          <FormControl w="100%" my={2}>
-            <FormControl.Label>E-Mail</FormControl.Label>
-            <Input py={3} placeholder="Enter password" />
-            <FormControl.ErrorMessage
-              leftIcon={<WarningOutlineIcon size="xs" />}>
-              Try different from previous passwords.
-            </FormControl.ErrorMessage>
-          </FormControl>
+              <FormControl my={2} isInvalid={!!(errors.email && touched.email)}>
+                <FormControl.Label>Your Email</FormControl.Label>
+                <Input
+                  py={3}
+                  placeholder="Enter email"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                />
+                {errors.email && touched.email && (
+                  <FormControl.ErrorMessage
+                    leftIcon={<WarningOutlineIcon size="xs" />}>
+                    {errors.email}
+                  </FormControl.ErrorMessage>
+                )}
+              </FormControl>
 
-          <FormControl w="100%" my={2}>
-            <FormControl.Label>Password</FormControl.Label>
-            <Input placeholder="Enter password" py={3} />
-            <FormControl.ErrorMessage
-              leftIcon={<WarningOutlineIcon size="xs" />}>
-              Try different from previous passwords.
-            </FormControl.ErrorMessage>
-          </FormControl>
-          <Button mt={5} background="blue.500" onPress={navigateToLogInScreen}>
-            Sign Up
-          </Button>
-          <HStack mt={5}>
-            <Text>Already Have an account? </Text>
-            <TouchableOpacity onPress={navigateToLogInScreen}>
-              <Text color="blue.500" fontWeight="bold" fontFamily="body">
-                SignIn
-              </Text>
-            </TouchableOpacity>
-          </HStack>
-        </Box>
+              <FormControl
+                my={2}
+                isInvalid={!!(errors.password && touched.password)}>
+                <FormControl.Label>Your Password</FormControl.Label>
+                <Input
+                  py={3}
+                  placeholder="Enter password"
+                  type="password"
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                />
+                {errors.password && touched.password && (
+                  <FormControl.ErrorMessage
+                    leftIcon={<WarningOutlineIcon size="xs" />}>
+                    {errors.password}
+                  </FormControl.ErrorMessage>
+                )}
+              </FormControl>
+
+              {errors?.general && (
+                <Text color="red.500" mt={2}>
+                  {errors?.general}
+                </Text>
+              )}
+
+              <Button
+                py={3}
+                mt={5}
+                background="blue.500"
+                onPress={handleSubmit}>
+                Sign Up
+              </Button>
+              <HStack mt={5}>
+                <Text>Already Have an account? </Text>
+                <TouchableOpacity onPress={navigateToLogInScreen}>
+                  <Text color="blue.500" fontWeight="bold" fontFamily="body">
+                    Sign In
+                  </Text>
+                </TouchableOpacity>
+              </HStack>
+            </>
+          )}
+        </Formik>
       </Box>
     </Screen>
   );

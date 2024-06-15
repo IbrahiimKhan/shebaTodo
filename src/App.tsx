@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 import {LogBox} from 'react-native';
 import Navigator from './navigators';
 import {customTheme} from './theme';
+import Toast from 'react-native-toast-message';
 
 const App = () => {
   useEffect(() => {
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <NativeBaseProvider theme={customTheme}>
       <Navigator />
+      <Toast />
     </NativeBaseProvider>
   );
 };
