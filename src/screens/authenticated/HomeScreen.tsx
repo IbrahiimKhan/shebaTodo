@@ -1,5 +1,6 @@
 import {Header, Screen, Task} from '@/components';
 import useAuthStore from '@/store/useAuthStore';
+import {HomeStackScreenProps} from '@/types/navigation';
 import {FlashList} from '@shopify/flash-list';
 import {
   AddIcon,
@@ -13,12 +14,18 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React from 'react';
+import React, {FC} from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 
-export const HomeScreen = () => {
+interface HomeScreenprops extends HomeStackScreenProps<'AddTask'> {}
+
+export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
   const {user} = useAuthStore();
-  console.log(user);
+
+  const navigateToAddTaskScreen = () => {
+    navigation.navigate('AddTask');
+  };
+
   return (
     <Screen>
       <Header
@@ -67,12 +74,14 @@ export const HomeScreen = () => {
               expiryDate={new Date()}
               status={'todo'}
               img={''}
+              id={0}
             />
           )}
           estimatedItemSize={200}
         />
         <Fab
           position="absolute"
+          onPress={navigateToAddTaskScreen}
           size="sm"
           background="blue.700"
           icon={<AddIcon color="white" size="lg" />}

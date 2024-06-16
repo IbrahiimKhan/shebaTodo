@@ -20,6 +20,7 @@ export type UnAuthenticatedStackNavigatorParamList = {
 
 export type AuthenticatedStackNavigatorParamList = {
   Root: NavigatorScreenParams<RootTabNavigatorParamList>;
+  AddTask: undefined;
 };
 
 export type RootTabNavigatorParamList = {
@@ -28,17 +29,11 @@ export type RootTabNavigatorParamList = {
 
 export type HomeStackParamList = {
   Home: undefined;
+  AddTask: undefined;
 };
 
 export type HomeStackScreenProps<T extends keyof HomeStackParamList> =
   NativeStackScreenProps<HomeStackParamList, T>;
-
-export type RechargeStackParamList = {
-  Recharge: undefined;
-};
-
-export type RechargeStackScreenProps<T extends keyof RechargeStackParamList> =
-  NativeStackScreenProps<RechargeStackParamList, T>;
 
 export type RootNavigatorScreenProps<T extends keyof RootNavigatorParamList> =
   NativeStackScreenProps<RootNavigatorParamList, T>;
@@ -57,7 +52,6 @@ declare global {
       extends RootNavigatorParamList,
         UnAuthenticatedStackNavigatorParamList,
         AuthenticatedStackNavigatorParamList,
-        HomeStackParamList,
-        RechargeStackParamList {}
+        HomeStackParamList {}
   }
 }

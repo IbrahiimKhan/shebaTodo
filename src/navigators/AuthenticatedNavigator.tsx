@@ -1,8 +1,8 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {type ReactElement} from 'react';
 
-import HomeScreen from '@/screens/authenticated/HomeScreen';
-import {LoginScreen} from '@/screens/unauthenticated/LoginScreen';
+import {AddTaskScreen} from '@/screens/authenticated/AddTaskScreen';
+import {HomeScreen} from '@/screens/authenticated/HomeScreen';
 import {type AuthenticatedStackNavigatorParamList} from '@/types/navigation';
 
 const Stack =
@@ -17,6 +17,13 @@ export const AuthenticatedNavigator = (): ReactElement => {
         }}
         name="Root"
         component={HomeScreen}
+      />
+      <Stack.Screen
+        options={{
+          animation: 'slide_from_bottom',
+        }}
+        name="AddTask"
+        component={AddTaskScreen}
       />
     </Stack.Navigator>
   );
