@@ -1,14 +1,24 @@
-import useAuthStore from '@/store/useAuthStore';
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, {type ReactElement} from 'react';
 
-export const AuthenticatedNavigator = () => {
-  const {user} = useAuthStore();
-  console.log(user);
+import HomeScreen from '@/screens/authenticated/HomeScreen';
+import {LoginScreen} from '@/screens/unauthenticated/LoginScreen';
+import {type AuthenticatedStackNavigatorParamList} from '@/types/navigation';
+
+const Stack =
+  createNativeStackNavigator<AuthenticatedStackNavigatorParamList>();
+
+export const AuthenticatedNavigator = (): ReactElement => {
   return (
-    <View>
-      <Text>AuthenticatedNavigator</Text>
-    </View>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen
+        options={{
+          animation: 'slide_from_left',
+        }}
+        name="Root"
+        component={HomeScreen}
+      />
+    </Stack.Navigator>
   );
 };
 
