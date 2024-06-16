@@ -1,6 +1,7 @@
 import {Header, Screen, Task} from '@/components';
 import useAuthStore from '@/store/useAuthStore';
 import {HomeStackScreenProps} from '@/types/navigation';
+import {useIsFocused} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import {
   AddIcon,
@@ -25,6 +26,8 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
   const navigateToAddTaskScreen = () => {
     navigation.navigate('AddTask');
   };
+
+  const isFocused = useIsFocused();
 
   return (
     <Screen>
@@ -79,13 +82,16 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
           )}
           estimatedItemSize={200}
         />
-        <Fab
-          position="absolute"
-          onPress={navigateToAddTaskScreen}
-          size="sm"
-          background="blue.700"
-          icon={<AddIcon color="white" size="lg" />}
-        />
+        {isFocused ? (
+          <Fab
+            renderInPortal={false}
+            position="absolute"
+            onPress={navigateToAddTaskScreen}
+            size="sm"
+            background="blue.700"
+            icon={<AddIcon color="white" size="lg" />}
+          />
+        ) : null}
       </Box>
     </Screen>
   );
