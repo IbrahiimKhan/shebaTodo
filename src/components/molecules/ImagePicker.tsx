@@ -1,7 +1,8 @@
-import {FormControl, Icon, IconButton} from 'native-base';
+import {FormControl, Icon, IconButton, Image} from 'native-base';
 import React, {FC, ReactElement, useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {FlashList} from '@shopify/flash-list';
 
 type ImagePickerProps = {
   handleSelectedImages: (images: string[]) => void;
@@ -10,7 +11,6 @@ export const ImagePicker: FC<ImagePickerProps> = ({
   handleSelectedImages,
 }): ReactElement => {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
-
   const openImagePicker = () => {
     const options = {
       mediaType: 'photo',
@@ -28,8 +28,8 @@ export const ImagePicker: FC<ImagePickerProps> = ({
         let imageUri = response?.uri || response.assets?.[0]?.uri;
         if (imageUri) {
           setSelectedImages([...selectedImages, imageUri]);
+          handleSelectedImages([...selectedImages, imageUri]);
         }
-        handleSelectedImages(selectedImages);
       }
     });
   };

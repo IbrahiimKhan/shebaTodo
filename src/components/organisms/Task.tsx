@@ -7,7 +7,7 @@ import {StaggerGroup} from '../atoms/transitions/StaggerGroup';
 import {TaskProps} from '@/types/storeTypes';
 
 type TaskProp = TaskProps;
-export const Task: FC<TaskProp> = (): ReactElement => {
+export const Task: FC<TaskProp> = (item): ReactElement => {
   return (
     <Box
       rounded="lg"
@@ -26,12 +26,12 @@ export const Task: FC<TaskProp> = (): ReactElement => {
       </Badge>
       <HStack>
         <Text fontFamily="body" fontSize={18} fontWeight="medium">
-          App Development
+          {item?.title}
         </Text>
         <StaggerGroup />
       </HStack>
       <Text fontFamily="body" fontSize={12} fontWeight="light">
-        Description of app development
+        {item?.description}
       </Text>
       <HStack my={2} space={2} alignItems="center">
         <Icon as={Ionicons} name="calendar" size="md" color="blue.500" />
@@ -40,7 +40,9 @@ export const Task: FC<TaskProp> = (): ReactElement => {
         </Text>
       </HStack>
       <HStack justifyContent="space-between">
-        <Avatar source={require('@assets/images/avatar.jpg')} />
+        {item?.img?.map((images, index) => {
+          return <Avatar source={{uri: images}} key={index} />;
+        })}
       </HStack>
       <Badge
         alignSelf="flex-end"

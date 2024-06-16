@@ -1,5 +1,6 @@
 import {Header, Screen, Task} from '@/components';
 import useAuthStore from '@/store/useAuthStore';
+import useTaskStore from '@/store/useTaskStore';
 import {HomeStackScreenProps} from '@/types/navigation';
 import {useIsFocused} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
@@ -15,13 +16,14 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 
 interface HomeScreenprops extends HomeStackScreenProps<'AddTask'> {}
 
 export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
   const {user} = useAuthStore();
+  const tasks = useTaskStore(state => state.tasks);
 
   const navigateToAddTaskScreen = () => {
     navigation.navigate('AddTask');
@@ -29,6 +31,10 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
 
   const isFocused = useIsFocused();
 
+  // useEffect(() => {
+  //   tasks();
+  // }, []);
+  console.log(tasks);
   return (
     <Screen>
       <Header
@@ -69,17 +75,8 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
           <Button>Todo</Button>
         </HStack>
         <FlashList
-          data={[1, 2, 3]}
-          renderItem={({item}) => (
-            <Task
-              title={'web development'}
-              description={'do the web development'}
-              expiryDate={new Date()}
-              status={'todo'}
-              img={''}
-              id={0}
-            />
-          )}
+          data={tasks}
+          renderItem={({item}) => <Task {...item} />}
           estimatedItemSize={200}
         />
         {isFocused ? (

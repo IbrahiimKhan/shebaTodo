@@ -1,15 +1,7 @@
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import {zustandStorage} from '@/storage/storage';
-
-export type TaskProps = {
-  id: number;
-  title: string;
-  description: string;
-  expiryDate: Date;
-  status: 'todo' | 'in progress' | 'done';
-  img: string;
-};
+import {TaskProps} from '@/types/storeTypes';
 
 interface TaskStore {
   tasks: TaskProps[];
