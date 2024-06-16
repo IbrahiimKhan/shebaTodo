@@ -1,11 +1,13 @@
 import {Avatar, Badge, Box, HStack, Icon, IconButton, Text} from 'native-base';
-import React, {ReactElement} from 'react';
+import React, {FC, ReactElement} from 'react';
 import {StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {StaggerGroup} from '../atoms/transitions/StaggerGroup';
+import {TaskProps} from '@/types/taskTypes';
 
-export const Task = (): ReactElement => {
+type TaskProp = TaskProps;
+export const Task: FC<TaskProp> = (): ReactElement => {
   return (
     <Box
       rounded="lg"
@@ -32,7 +34,7 @@ export const Task = (): ReactElement => {
         Description of app development
       </Text>
       <HStack my={2} space={2} alignItems="center">
-        <Icon as={Ionicons} name="calendar" size="md" color="primary.400" />
+        <Icon as={Ionicons} name="calendar" size="md" color="blue.500" />
         <Text mt={1} fontWeight="bold" fontFamily="body">
           2024-06-17 5:30PM
         </Text>
