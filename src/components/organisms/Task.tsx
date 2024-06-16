@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {StaggerGroup} from '../atoms/transitions/StaggerGroup';
-import {TaskProps} from '@/types/taskTypes';
+import {TaskProps} from '@/types/storeTypes';
 
 type TaskProp = TaskProps;
 export const Task: FC<TaskProp> = (): ReactElement => {
