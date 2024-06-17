@@ -13,6 +13,7 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
       rounded="lg"
       overflow="hidden"
       borderColor="coolGray.200"
+      backgroundColor="white"
       borderWidth="2"
       mb={3}
       px={2}
@@ -22,7 +23,7 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
         variant="solid"
         background="blue.500"
         position="absolute">
-        High
+        {item.status}
       </Badge>
       <HStack>
         <Text fontFamily="body" fontSize={18} fontWeight="medium">

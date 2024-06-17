@@ -92,7 +92,6 @@ export const AddTaskScreen = (): ReactElement => {
               <FormControl
                 mb="5"
                 isInvalid={!!(errors.expiryDate && touched.expiryDate)}>
-                <FormControl.Label>Expiry Date</FormControl.Label>
                 <DatePicker
                   handlSelectDate={(date: Date) => {
                     setSelectedDate(date);
@@ -106,7 +105,6 @@ export const AddTaskScreen = (): ReactElement => {
                 )}
               </FormControl>
               <FormControl mb="5" isInvalid={!!(errors.img && touched.img)}>
-                <FormControl.Label>Images</FormControl.Label>
                 <ImagePicker
                   handleSelectedImages={function (images: string[]): void {
                     console.log(images);

@@ -75,6 +75,8 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
           <Button>Todo</Button>
         </HStack>
         <FlashList
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           data={tasks}
           renderItem={({item}) => <Task {...item} />}
           estimatedItemSize={200}
