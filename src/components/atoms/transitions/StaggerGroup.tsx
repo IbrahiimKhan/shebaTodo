@@ -1,14 +1,6 @@
 import useTaskStore from '@/store/useTaskStore';
 import {TaskProps} from '@/types/taskTypes';
-import {
-  Box,
-  HStack,
-  Icon,
-  IconButton,
-  Stagger,
-  theme,
-  useDisclose,
-} from 'native-base';
+import {Box, HStack, Icon, Stagger, theme, useDisclose} from 'native-base';
 import React, {FC} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

@@ -3,8 +3,8 @@ import React, {type ReactElement} from 'react';
 
 import {AddTaskScreen} from '@/screens/authenticated/AddTaskScreen';
 import {HomeScreen} from '@/screens/authenticated/HomeScreen';
-import {type AuthenticatedStackNavigatorParamList} from '@/types/navigation';
 import {ViewTaskScreen} from '@/screens/authenticated/ViewTaskScreen';
+import {type AuthenticatedStackNavigatorParamList} from '@/types/navigation';
 
 const Stack =
   createNativeStackNavigator<AuthenticatedStackNavigatorParamList>();

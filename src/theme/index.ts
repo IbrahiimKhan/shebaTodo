@@ -5,7 +5,7 @@ export const customTheme = extendTheme({
     Poppins: {
       300: {
         normal: 'Poppins-Light',
-    },
+      },
       400: {
         normal: 'Poppins-Regular',
       },

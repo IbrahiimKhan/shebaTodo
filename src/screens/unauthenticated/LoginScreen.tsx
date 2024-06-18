@@ -13,9 +13,9 @@ import {
 } from 'native-base';
 import React from 'react';
 
+import {Header, Screen} from '@/components';
 import useHandleAuthentication from '@/hooks/useHandleAuthentication';
 import {loginSchema} from '@/schema/validationSchema';
-import {Header, Screen} from '@/components';
 import {TouchableOpacity} from 'react-native';
 
 type LoginScreenProps = UnAuthenticatedStackNavigatorScreenProps<'Login'>;

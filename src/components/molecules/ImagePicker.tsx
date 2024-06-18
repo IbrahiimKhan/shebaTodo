@@ -1,5 +1,5 @@
 import {FlashList} from '@shopify/flash-list';
-import {Button, FormControl, Icon, IconButton, Image} from 'native-base';
+import {Button, FormControl, Icon, Image} from 'native-base';
 import React, {FC, ReactElement, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';

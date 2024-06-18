@@ -1,6 +1,8 @@
 import {DatePicker, Header, ImagePicker, Screen} from '@/components';
-import useTaskStore from '@/store/useTaskStore';
 import {taskSchema} from '@/schema/validationSchema';
+import useTaskStore from '@/store/useTaskStore';
+import {AuthenticatedStackNavigatorScreenProps} from '@/types/navigation';
+import {TaskProps} from '@/types/taskTypes';
 import {Formik, useFormikContext} from 'formik';
 import {
   Box,
@@ -10,9 +12,7 @@ import {
   ScrollView,
   TextArea,
 } from 'native-base';
-import React, {FC, ReactElement, useState, useEffect} from 'react';
-import {AuthenticatedStackNavigatorScreenProps} from '@/types/navigation';
-import {TaskProps} from '@/types/taskTypes';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import Toast from 'react-native-toast-message';
 
 interface ViewTaskScreenProps

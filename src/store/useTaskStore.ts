@@ -8,6 +8,7 @@ interface TaskStore {
   createTask: (task: TaskProps) => void;
   updateTask: (id: number, updatedTask: Partial<TaskProps>) => void;
   deleteTask: (id: number) => void;
+  deleteTasks: (ids: number[]) => void;
   deleteAllTasks: () => void;
   getTask: (id: number) => TaskProps | undefined;
   getAllTasks: () => TaskProps[];
@@ -30,6 +31,11 @@ export const useTaskStore = create<TaskStore>()(
       deleteTask: (id: number) => {
         set(state => ({
           tasks: state.tasks.filter(task => task.id !== id),
+        }));
+      },
+      deleteTasks: (ids: number[]) => {
+        set(state => ({
+          tasks: state.tasks.filter(task => !ids.includes(task.id)),
         }));
       },
       deleteAllTasks: () => {

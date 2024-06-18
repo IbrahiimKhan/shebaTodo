@@ -1,23 +1,14 @@
+import {useStringHelper} from '@/helper/useStringHelper';
 import {AuthenticatedStackNavigatorParamList} from '@/types/navigation';
 import {TaskProps} from '@/types/storeTypes';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  HStack,
-  Icon,
-  Image,
-  ScrollView,
-  Text,
-} from 'native-base';
+import {FlashList} from '@shopify/flash-list';
+import {Badge, Box, HStack, Icon, Image, Text} from 'native-base';
 import React, {FC, ReactElement} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StaggerGroup} from '../atoms/transitions/StaggerGroup';
-import {FlashList} from '@shopify/flash-list';
 
 type TaskProp = TaskProps;
 export const Task: FC<TaskProp> = (item): ReactElement => {
@@ -32,6 +23,8 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
   const navigateToTaskDetailsScreen = () => {
     navigation.navigate('ViewTask', item);
   };
+
+  const {titleCase} = useStringHelper();
 
   return (
     <TouchableOpacity onPress={navigateToTaskDetailsScreen}>
@@ -59,7 +52,7 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
         p={2}>
         <HStack flex={1} justifyContent="space-between">
           <Text fontFamily="body" fontSize={18} fontWeight="medium">
-            {item?.title}
+            {titleCase(item?.title)}
           </Text>
           <Box>
             <StaggerGroup item={item} />

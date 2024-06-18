@@ -1,6 +1,7 @@
 import {DatePicker, Header, ImagePicker, Screen} from '@/components';
-import useTaskStore, {TaskProps} from '@/store/useTaskStore';
 import {taskSchema} from '@/schema/validationSchema';
+import useTaskStore, {TaskProps} from '@/store/useTaskStore';
+import {HomeStackScreenProps} from '@/types/navigation';
 import {Formik} from 'formik';
 import {
   Box,
@@ -11,7 +12,6 @@ import {
   TextArea,
 } from 'native-base';
 import React, {FC, ReactElement, useState} from 'react';
-import {HomeStackScreenProps} from '@/types/navigation';
 import Toast from 'react-native-toast-message';
 
 interface AddTaskScreenProps extends HomeStackScreenProps<'Home'> {}
