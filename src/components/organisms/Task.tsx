@@ -37,21 +37,21 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
         borderTopLeftRadius="none"
         borderBottomLeftRadius="xl"
         background={
-          item.status === 'Completed'
+          item?.status === 'Completed'
             ? 'success.500'
             : item.status === 'In Progress'
             ? 'emerald.500'
             : 'gray.500'
         }
         position="absolute">
-        {item.status}
+        {item?.status}
       </Badge>
       <HStack flex={1} justifyContent="space-between">
         <Text fontFamily="body" fontSize={18} fontWeight="medium">
           {item?.title}
         </Text>
         <Box>
-          <StaggerGroup id={item.id} />
+          <StaggerGroup item={item} />
         </Box>
       </HStack>
       {item.description ? (

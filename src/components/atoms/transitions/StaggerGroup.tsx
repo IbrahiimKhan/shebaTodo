@@ -1,22 +1,14 @@
 import useTaskStore from '@/store/useTaskStore';
 import {TaskProps} from '@/types/taskTypes';
-import {
-  Box,
-  Center,
-  HStack,
-  Icon,
-  IconButton,
-  Stagger,
-  useDisclose,
-} from 'native-base';
+import {Box, HStack, Icon, IconButton, Stagger, useDisclose} from 'native-base';
 import React, {FC} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 type StaggerGroupProps = {
-  id: number;
+  item: TaskProps;
 };
-export const StaggerGroup: FC<StaggerGroupProps> = ({id}) => {
+export const StaggerGroup: FC<StaggerGroupProps> = ({item}) => {
   const {isOpen, onToggle} = useDisclose();
   const {deleteTask, updateTask} = useTaskStore();
   return (
@@ -53,35 +45,39 @@ export const StaggerGroup: FC<StaggerGroupProps> = ({id}) => {
             },
           },
         }}>
-        <IconButton
-          onPress={() => {
-            onToggle();
-            const updatedStatus: Partial<TaskProps> = {
-              status: 'Completed',
-            };
-            updateTask(id, updatedStatus);
-          }}
-          variant="solid"
-          bg="success.500"
-          colorScheme="success"
-          borderRadius="full"
-          mr={3}
-          icon={
-            <Icon
-              as={MaterialIcons}
-              size="md"
-              name="check"
-              _dark={{
-                color: 'warmGray.50',
+        <Box>
+          {item.status !== 'Completed' ? (
+            <IconButton
+              onPress={() => {
+                const updatedStatus: Partial<TaskProps> = {
+                  status: 'Completed',
+                };
+                updateTask(item.id, updatedStatus);
+                onToggle();
               }}
-              color="warmGray.50"
+              variant="solid"
+              bg="success.500"
+              colorScheme="success"
+              borderRadius="full"
+              mr={3}
+              icon={
+                <Icon
+                  as={MaterialIcons}
+                  size="md"
+                  name="check"
+                  _dark={{
+                    color: 'warmGray.50',
+                  }}
+                  color="warmGray.50"
+                />
+              }
             />
-          }
-        />
+          ) : null}
+        </Box>
         <IconButton
           onPress={() => {
+            deleteTask(item.id);
             onToggle();
-            deleteTask(id);
           }}
           variant="solid"
           bg="red.500"
