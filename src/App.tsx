@@ -1,9 +1,9 @@
 import {NativeBaseProvider} from 'native-base';
 import React, {useEffect} from 'react';
 import {LogBox} from 'react-native';
-import Navigator from './navigators';
-import {customTheme} from './theme';
 import Toast from 'react-native-toast-message';
+import {customTheme} from './theme';
+import Navigator from './navigators';
 
 const App = () => {
   useEffect(() => {

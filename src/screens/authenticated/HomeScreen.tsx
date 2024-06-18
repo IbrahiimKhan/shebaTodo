@@ -1,8 +1,13 @@
+/* eslint-disable react/no-unstable-nested-components */
 import {Header, Screen, Scrollable, Task} from '@/components';
 import useAuthStore from '@/store/useAuthStore';
 import useTaskStore from '@/store/useTaskStore';
 import {HomeStackScreenProps} from '@/types/navigation';
 import {TaskProps} from '@/types/taskTypes';
+import {
+  configureNotifications,
+  scheduleTaskNotifications,
+} from '@/utils/notificatation';
 import {useIsFocused} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import {
@@ -35,10 +40,10 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
       return;
     }
     setSelectedCategory(item);
-    const filteredDoctor = tasks.filter(
+    const filteredTasks = tasks.filter(
       task => task.status.toLowerCase() === item.toLowerCase(),
     );
-    setTaskList(filteredDoctor);
+    setTaskList(filteredTasks);
   };
 
   const navigateToAddTaskScreen = () => {
@@ -49,13 +54,14 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
 
   useEffect(() => {
     setTaskList(tasks);
+    configureNotifications();
+    scheduleTaskNotifications(tasks);
   }, [tasks]);
 
   return (
     <Screen>
       <Header
         title=""
-        // eslint-disable-next-line react/no-unstable-nested-components
         left={() => (
           <HStack alignItems="center">
             <Avatar
@@ -66,7 +72,7 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
             </Avatar>
             <VStack>
               <Text fontFamily="body" fontSize={14}>
-                Hellow
+                Hello
               </Text>
               <Text fontWeight="semibold" fontFamily="heading" fontSize={16}>
                 {user?.name}

@@ -9,6 +9,7 @@ import React, {FC, ReactElement} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StaggerGroup} from '../atoms/transitions/StaggerGroup';
+import moment from 'moment';
 
 type TaskProp = TaskProps;
 export const Task: FC<TaskProp> = (item): ReactElement => {
@@ -71,7 +72,7 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
             color="danger.500"
           />
           <Text mt={1} fontWeight="bold" fontFamily="body">
-            2024-06-17 5:30PM
+            {moment(item.expiryDate).format('MMMM Do YYYY, h:mm:ss a')}
           </Text>
         </HStack>
         <FlashList
