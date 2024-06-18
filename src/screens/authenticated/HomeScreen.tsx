@@ -31,10 +31,6 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
 
   const isFocused = useIsFocused();
 
-  // useEffect(() => {
-  //   tasks();
-  // }, []);
-  console.log(tasks);
   return (
     <Screen>
       <Header
@@ -78,6 +74,7 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           data={tasks}
+          ListEmptyComponent={() => <Text>No Task Found! Add one please</Text>}
           renderItem={({item}) => <Task {...item} />}
           estimatedItemSize={200}
         />

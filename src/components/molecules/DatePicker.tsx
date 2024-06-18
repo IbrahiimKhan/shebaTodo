@@ -5,10 +5,16 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type DatePickerProps = {
+  initialDate?: Date | null;
   handlSelectDate: (date: Date) => void;
 };
-export const DatePicker: FC<DatePickerProps> = ({handlSelectDate}) => {
-  const [selectedDate, setSelectedDate] = useState<string>('');
+export const DatePicker: FC<DatePickerProps> = ({
+  handlSelectDate,
+  initialDate = null,
+}) => {
+  const [selectedDate, setSelectedDate] = useState<string | null>(
+    initialDate ? moment(initialDate).format('MMMM Do YYYY, h:mm:ss a') : '',
+  );
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {

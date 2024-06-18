@@ -4,6 +4,7 @@ import React, {type ReactElement} from 'react';
 import {AddTaskScreen} from '@/screens/authenticated/AddTaskScreen';
 import {HomeScreen} from '@/screens/authenticated/HomeScreen';
 import {type AuthenticatedStackNavigatorParamList} from '@/types/navigation';
+import {ViewTaskScreen} from '@/screens/authenticated/ViewTaskScreen';
 
 const Stack =
   createNativeStackNavigator<AuthenticatedStackNavigatorParamList>();
@@ -24,6 +25,13 @@ export const AuthenticatedNavigator = (): ReactElement => {
         }}
         name="AddTask"
         component={AddTaskScreen}
+      />
+      <Stack.Screen
+        options={{
+          animation: 'slide_from_bottom',
+        }}
+        name="ViewTask"
+        component={ViewTaskScreen}
       />
     </Stack.Navigator>
   );

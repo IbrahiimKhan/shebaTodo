@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/native';
 import {type NativeStackScreenProps} from '@react-navigation/native-stack';
 import {type ComponentProps} from 'react';
+import {TaskProps} from './taskTypes';
 
 export interface NavigationProps
   extends Partial<ComponentProps<typeof NavigationContainer>> {}
@@ -21,6 +22,7 @@ export type UnAuthenticatedStackNavigatorParamList = {
 export type AuthenticatedStackNavigatorParamList = {
   Root: NavigatorScreenParams<RootTabNavigatorParamList>;
   AddTask: undefined;
+  ViewTask: TaskProps;
 };
 
 export type RootTabNavigatorParamList = {
@@ -30,6 +32,7 @@ export type RootTabNavigatorParamList = {
 export type HomeStackParamList = {
   Home: undefined;
   AddTask: undefined;
+  ViewTask: TaskProps;
 };
 
 export type HomeStackScreenProps<T extends keyof HomeStackParamList> =

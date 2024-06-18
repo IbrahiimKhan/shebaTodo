@@ -10,6 +10,6 @@ export type TaskProps = {
   title: string;
   description: string;
   expiryDate: Date;
-  status: 'todo' | 'in progress' | 'done';
+  status: 'Todo' | 'In Progress' | 'Completed';
   img: string[];
 };

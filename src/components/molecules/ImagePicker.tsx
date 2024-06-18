@@ -1,16 +1,21 @@
-import {FormControl, Icon, IconButton, Image} from 'native-base';
+import {Box, FormControl, Icon, IconButton, Image, Text} from 'native-base';
 import React, {FC, ReactElement, useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {FlashList} from '@shopify/flash-list';
+import {TouchableOpacity} from 'react-native';
 
 type ImagePickerProps = {
+  initialImages?: string[];
   handleSelectedImages: (images: string[]) => void;
 };
 export const ImagePicker: FC<ImagePickerProps> = ({
   handleSelectedImages,
+  initialImages,
 }): ReactElement => {
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [selectedImages, setSelectedImages] = useState<string[]>(
+    initialImages ? initialImages : [],
+  );
   const openImagePicker = () => {
     const options = {
       mediaType: 'photo',
@@ -54,23 +59,30 @@ export const ImagePicker: FC<ImagePickerProps> = ({
           }
         />
       ) : (
-        <FlashList
-          renderItem={({item}) => {
-            return (
-              <Image
-                mb={3}
-                alt="demo images"
-                resizeMode="contain"
-                width={100}
-                height={100}
-                source={{uri: item}}
-              />
-            );
-          }}
-          estimatedItemSize={50}
-          numColumns={4}
-          data={selectedImages}
-        />
+        <>
+          <FlashList
+            renderItem={({item}) => {
+              return (
+                <Image
+                  mb={3}
+                  alt="demo images"
+                  resizeMode="contain"
+                  width={100}
+                  height={100}
+                  source={{uri: item}}
+                />
+              );
+            }}
+            estimatedItemSize={50}
+            numColumns={4}
+            data={selectedImages}
+          />
+          <TouchableOpacity onPress={openImagePicker}>
+            <Box height={100} width={100} backgroundColor="primary.500">
+              <Text>Add More</Text>
+            </Box>
+          </TouchableOpacity>
+        </>
       )}
     </>
   );
