@@ -16,12 +16,13 @@ import {TaskProps} from '@/types/taskTypes';
 import Toast from 'react-native-toast-message';
 
 interface ViewTaskScreenProps
-  extends AuthenticatedStackNavigatorScreenProps<'ViewTask'> {}
+  extends AuthenticatedStackNavigatorScreenProps<'ViewTask' | 'Root'> {}
 
 export const ViewTaskScreen: FC<ViewTaskScreenProps> = ({
   route,
+  navigation,
 }): ReactElement => {
-  const task = route?.params;
+  const task = route?.params as TaskProps;
   const [selectedImages, setSelectedImages] = useState<string[]>(task.img);
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     new Date(task.expiryDate),
@@ -58,6 +59,7 @@ export const ViewTaskScreen: FC<ViewTaskScreenProps> = ({
             };
             updateTask(task.id, updatedTask);
             Toast.show({text1: 'Task Updated Successfully'});
+            navigation.goBack();
           }}>
           {({
             handleChange,

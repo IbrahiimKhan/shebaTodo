@@ -30,7 +30,7 @@ export type RootTabNavigatorParamList = {
 };
 
 export type HomeStackParamList = {
-  Home: undefined;
+  Root: undefined;
   AddTask: undefined;
   ViewTask: TaskProps;
 };

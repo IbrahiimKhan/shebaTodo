@@ -5,7 +5,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Avatar, Badge, Box, Button, HStack, Icon, Text} from 'native-base';
 import React, {FC, ReactElement} from 'react';
 import {StyleSheet} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StaggerGroup} from '../atoms/transitions/StaggerGroup';
 
 type TaskProp = TaskProps;
@@ -30,8 +30,7 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
       backgroundColor="white"
       borderWidth="2"
       mb={3}
-      px={2}
-      py={4}>
+      p={2}>
       <Badge
         alignSelf="flex-end"
         variant="solid"
@@ -61,7 +60,12 @@ export const Task: FC<TaskProp> = (item): ReactElement => {
         </Text>
       ) : null}
       <HStack my={2} space={2} alignItems="center">
-        <Icon as={Ionicons} name="calendar" size="md" color="blue.500" />
+        <Icon
+          as={MaterialCommunityIcons}
+          name="timer-sand"
+          size="lg"
+          color="danger.500"
+        />
         <Text mt={1} fontWeight="bold" fontFamily="body">
           2024-06-17 5:30PM
         </Text>

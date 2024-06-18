@@ -10,14 +10,19 @@ import {
   ScrollView,
   TextArea,
 } from 'native-base';
-import React, {ReactElement, useState} from 'react';
+import React, {FC, ReactElement, useState} from 'react';
+import {HomeStackScreenProps} from '@/types/navigation';
+import Toast from 'react-native-toast-message';
 
-export const AddTaskScreen = (): ReactElement => {
+interface AddTaskScreenProps extends HomeStackScreenProps<'Home'> {}
+
+export const AddTaskScreen: FC<AddTaskScreenProps> = ({
+  navigation,
+}): ReactElement => {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const createTask = useTaskStore(state => state.createTask);
-  const tasks = useTaskStore(state => state.tasks);
-  console.log(tasks);
+
   return (
     <Screen>
       <Header title="Add Task" />
@@ -46,6 +51,8 @@ export const AddTaskScreen = (): ReactElement => {
             resetForm();
             setSelectedImages([]);
             setSelectedDate(null);
+            Toast.show({text1: 'Task Added Successfully!'});
+            navigation.navigate('Root');
           }}>
           {({
             handleChange,

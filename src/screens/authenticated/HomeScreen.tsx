@@ -1,14 +1,14 @@
-import {Header, Screen, Task} from '@/components';
+import {Header, Screen, Scrollable, Task} from '@/components';
 import useAuthStore from '@/store/useAuthStore';
 import useTaskStore from '@/store/useTaskStore';
 import {HomeStackScreenProps} from '@/types/navigation';
+import {TaskProps} from '@/types/taskTypes';
 import {useIsFocused} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import {
   AddIcon,
   Avatar,
   Box,
-  Button,
   Fab,
   HStack,
   Heading,
@@ -16,7 +16,7 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 
 interface HomeScreenprops extends HomeStackScreenProps<'AddTask'> {}
@@ -24,12 +24,32 @@ interface HomeScreenprops extends HomeStackScreenProps<'AddTask'> {}
 export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
   const {user} = useAuthStore();
   const tasks = useTaskStore(state => state.tasks);
+  const [taskList, setTaskList] = useState<TaskProps[]>([]);
+  const categories = ['All', 'Todo', 'In Progress', 'Completed'];
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+
+  const handleCategoryPress = (item: string) => {
+    if (item === 'All') {
+      setSelectedCategory('All');
+      setTaskList(tasks);
+      return;
+    }
+    setSelectedCategory(item);
+    const filteredDoctor = tasks.filter(
+      task => task.status.toLowerCase() === item.toLowerCase(),
+    );
+    setTaskList(filteredDoctor);
+  };
 
   const navigateToAddTaskScreen = () => {
     navigation.navigate('AddTask');
   };
 
   const isFocused = useIsFocused();
+
+  useEffect(() => {
+    setTaskList(tasks);
+  }, [tasks]);
 
   return (
     <Screen>
@@ -63,17 +83,15 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
             <Text color="blue.500">Habit</Text> together
           </Heading>
         </VStack>
-        <HStack space={4} mb={5}>
-          <Button colorScheme="warning" py={1}>
-            To Do
-          </Button>
-          <Button colorScheme="secondary">Todo</Button>
-          <Button>Todo</Button>
-        </HStack>
+        <Scrollable
+          data={categories}
+          selectedItem={selectedCategory}
+          handleItemPress={item => handleCategoryPress(item)}
+        />
         <FlashList
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          data={tasks}
+          data={taskList}
           ListEmptyComponent={() => <Text>No Task Found! Add one please</Text>}
           renderItem={({item}) => <Task {...item} />}
           estimatedItemSize={200}
@@ -81,7 +99,6 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
         {isFocused ? (
           <Fab
             renderInPortal={false}
-            position="absolute"
             onPress={navigateToAddTaskScreen}
             size="sm"
             background="blue.700"

@@ -1,4 +1,12 @@
-import {Box, FormControl, Icon, IconButton, Image, Text} from 'native-base';
+import {
+  Box,
+  Button,
+  FormControl,
+  Icon,
+  IconButton,
+  Image,
+  Text,
+} from 'native-base';
 import React, {FC, ReactElement, useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -77,11 +85,12 @@ export const ImagePicker: FC<ImagePickerProps> = ({
             numColumns={4}
             data={selectedImages}
           />
-          <TouchableOpacity onPress={openImagePicker}>
-            <Box height={100} width={100} backgroundColor="primary.500">
-              <Text>Add More</Text>
-            </Box>
-          </TouchableOpacity>
+          <Button
+            alignSelf="flex-start"
+            backgroundColor="emerald.500"
+            onPress={openImagePicker}>
+            Add More Images
+          </Button>
         </>
       )}
     </>
