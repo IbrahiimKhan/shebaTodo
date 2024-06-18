@@ -1,6 +1,14 @@
 import moment from 'moment';
-import {Badge, FormControl, HStack, Icon, IconButton} from 'native-base';
+import {
+  Badge,
+  Button,
+  FormControl,
+  HStack,
+  Icon,
+  IconButton,
+} from 'native-base';
 import React, {FC, useState} from 'react';
+import {TouchableOpacity} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -35,20 +43,17 @@ export const DatePicker: FC<DatePickerProps> = ({
     <>
       <FormControl.Label>Choose Expiry Time</FormControl.Label>
       <HStack alignItems="center" space={2}>
-        <IconButton
-          onPress={showDatePicker}
-          icon={
-            <Icon
-              as={Ionicons}
-              size="10"
-              name="calendar"
-              _dark={{
-                color: 'blue.500',
-              }}
-              color="blue.500"
-            />
-          }
-        />
+        <TouchableOpacity onPress={showDatePicker}>
+          <Icon
+            as={Ionicons}
+            size="10"
+            name="calendar"
+            _dark={{
+              color: 'blue.500',
+            }}
+            color="blue.500"
+          />
+        </TouchableOpacity>
         {selectedDate ? (
           <Badge variant="solid" background="blue.500" color={'white'}>
             {selectedDate}

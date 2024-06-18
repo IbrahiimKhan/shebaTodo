@@ -1,7 +1,16 @@
 import useTaskStore from '@/store/useTaskStore';
 import {TaskProps} from '@/types/taskTypes';
-import {Box, HStack, Icon, IconButton, Stagger, useDisclose} from 'native-base';
+import {
+  Box,
+  HStack,
+  Icon,
+  IconButton,
+  Stagger,
+  theme,
+  useDisclose,
+} from 'native-base';
 import React, {FC} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -47,70 +56,58 @@ export const StaggerGroup: FC<StaggerGroupProps> = ({item}) => {
         }}>
         <Box>
           {item.status !== 'Completed' ? (
-            <IconButton
+            <TouchableOpacity
               onPress={() => {
                 const updatedStatus: Partial<TaskProps> = {
                   status: 'Completed',
                 };
                 updateTask(item.id, updatedStatus);
                 onToggle();
-              }}
-              variant="solid"
-              bg="success.500"
-              colorScheme="success"
-              borderRadius="full"
-              mr={3}
-              icon={
-                <Icon
-                  as={MaterialIcons}
-                  size="md"
-                  name="check"
-                  _dark={{
-                    color: 'warmGray.50',
-                  }}
-                  color="warmGray.50"
-                />
-              }
-            />
+              }}>
+              <Icon
+                as={MaterialIcons}
+                size="xl"
+                name="check-circle"
+                _dark={{
+                  color: 'success.500',
+                }}
+                color="success.500"
+              />
+            </TouchableOpacity>
           ) : null}
         </Box>
-        <IconButton
+        <TouchableOpacity
           onPress={() => {
             deleteTask(item.id);
             onToggle();
-          }}
-          variant="solid"
-          bg="red.500"
-          colorScheme="red"
-          borderRadius="full"
-          icon={
-            <Icon
-              as={MaterialIcons}
-              size="md"
-              name="delete"
-              _dark={{
-                color: 'warmGray.50',
-              }}
-              color="warmGray.50"
-            />
-          }
-        />
-      </Stagger>
-      <IconButton
-        variant="outline"
-        onPress={onToggle}
-        paddingY={0}
-        borderRadius="full"
-        borderColor="gray.400"
-        icon={
+          }}>
           <Icon
             as={MaterialCommunityIcons}
-            color="black"
-            size="md"
-            name="dots-horizontal"
+            size="xl"
+            name="delete-circle"
+            _dark={{
+              color: 'danger.500',
+            }}
+            color="danger.500"
           />
-        }
-      />
+        </TouchableOpacity>
+      </Stagger>
+      <TouchableOpacity onPress={onToggle} style={styles.pressable}>
+        <Icon
+          as={MaterialCommunityIcons}
+          color="black"
+          size="lg"
+          name="dots-horizontal"
+        />
+      </TouchableOpacity>
     </HStack>
   );
 };
+
+const styles = StyleSheet.create({
+  pressable: {
+    borderColor: theme.colors.gray[200],
+    borderWidth: 1,
+    borderRadius: 100,
+  },
+});
