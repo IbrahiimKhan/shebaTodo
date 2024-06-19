@@ -14,12 +14,12 @@ import {
   Text,
   WarningOutlineIcon,
 } from 'native-base';
-import React from 'react';
+import React, {FC} from 'react';
 import {TouchableOpacity} from 'react-native';
 
 type SignUpScreenProps = UnAuthenticatedStackNavigatorScreenProps<'Login'>;
 
-export const SignUpScreen: React.FC<SignUpScreenProps> = ({navigation}) => {
+export const SignUpScreen: FC<SignUpScreenProps> = ({navigation}) => {
   const {signUp} = useHandleAuthentication();
 
   const navigateToLogInScreen = () => {

@@ -21,18 +21,21 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 
 interface HomeScreenprops extends HomeStackScreenProps<'AddTask'> {}
 
-export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
+export const HomeScreen: FC<HomeScreenprops> = ({navigation}): ReactElement => {
+  //states and variables
   const {user} = useAuthStore();
   const tasks = useTaskStore(state => state.tasks);
   const [taskList, setTaskList] = useState<TaskProps[]>([]);
-  const categories = ['All', 'Todo', 'In Progress', 'Completed'];
+  const categories = ['All', 'Todo', 'Completed'];
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const isFocused = useIsFocused();
 
+  //hanlde category filter
   const handleCategoryPress = (item: string) => {
     if (item === 'All') {
       setSelectedCategory('All');
@@ -50,14 +53,13 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
     navigation.navigate('AddTask');
   };
 
-  const isFocused = useIsFocused();
-
   useEffect(() => {
     setTaskList(tasks);
+    //hanlde notifications
     configureNotifications();
     scheduleTaskNotifications(tasks);
   }, [tasks]);
-  console.log(tasks);
+
   return (
     <Screen>
       <Header

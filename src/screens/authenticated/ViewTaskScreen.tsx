@@ -12,7 +12,14 @@ import {
   ScrollView,
   TextArea,
 } from 'native-base';
-import React, {FC, ReactElement, useEffect, useState} from 'react';
+import React, {
+  Dispatch,
+  FC,
+  ReactElement,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import Toast from 'react-native-toast-message';
 
 interface ViewTaskScreenProps
@@ -21,11 +28,12 @@ interface ViewTaskScreenProps
 interface TaskFormProps {
   task: TaskProps;
   selectedImages: string[];
-  setSelectedImages: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedImages: Dispatch<SetStateAction<string[]>>;
   selectedDate: Date | null;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  setSelectedDate: Dispatch<SetStateAction<Date | null>>;
 }
 
+//taskform to handle the form
 const TaskForm: FC<TaskFormProps> = ({
   task,
   selectedImages,
@@ -44,6 +52,7 @@ const TaskForm: FC<TaskFormProps> = ({
   } = useFormikContext<Partial<TaskProps>>();
   const [isChanged, setIsChanged] = useState(false);
 
+  //trigger form data changes
   useEffect(() => {
     const hasChanged =
       values.title !== task.title ||
@@ -126,13 +135,14 @@ export const ViewTaskScreen: FC<ViewTaskScreenProps> = ({
   route,
   navigation,
 }): ReactElement => {
+  //states & variables
   const task = route?.params as TaskProps;
-  console.log(task, 'what is task');
   const [selectedImages, setSelectedImages] = useState<string[]>(task.img);
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     new Date(task.expiryDate),
   );
 
+  //update the task
   const updateTask = useTaskStore(state => state.updateTask);
 
   return (

@@ -1,7 +1,8 @@
 import {DatePicker, Header, ImagePicker, Screen} from '@/components';
 import {taskSchema} from '@/schema/validationSchema';
-import useTaskStore, {TaskProps} from '@/store/useTaskStore';
+import useTaskStore from '@/store/useTaskStore';
 import {HomeStackScreenProps} from '@/types/navigation';
+import {TaskProps} from '@/types/taskTypes';
 import {Formik} from 'formik';
 import {
   Box,
@@ -14,12 +15,12 @@ import {
 import React, {FC, ReactElement, useState} from 'react';
 import Toast from 'react-native-toast-message';
 
-interface AddTaskScreenProps extends HomeStackScreenProps<'Home'> {}
+interface AddTaskScreenProps extends HomeStackScreenProps<'AddTask'> {}
 
 export const AddTaskScreen: FC<AddTaskScreenProps> = ({
   navigation,
 }): ReactElement => {
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  //states & variables
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const createTask = useTaskStore(state => state.createTask);
 
@@ -44,12 +45,11 @@ export const AddTaskScreen: FC<AddTaskScreenProps> = ({
               title: values.title,
               description: values.description,
               expiryDate: selectedDate!,
-              status: 'todo',
+              status: 'Todo',
               img: values.img,
             };
             createTask(newTask);
             resetForm();
-            setSelectedImages([]);
             setSelectedDate(null);
             Toast.show({text1: 'Task Added Successfully!'});
             navigation.navigate('Root');
@@ -114,7 +114,6 @@ export const AddTaskScreen: FC<AddTaskScreenProps> = ({
               <FormControl mb="5" isInvalid={!!(errors.img && touched.img)}>
                 <ImagePicker
                   handleSelectedImages={function (images: string[]): void {
-                    console.log(images);
                     setFieldValue('img', images);
                   }}
                 />

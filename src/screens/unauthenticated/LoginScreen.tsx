@@ -1,4 +1,3 @@
-// LoginScreen.tsx
 import {UnAuthenticatedStackNavigatorScreenProps} from '@/types/navigation';
 import {Formik} from 'formik';
 import {
@@ -11,7 +10,7 @@ import {
   Text,
   WarningOutlineIcon,
 } from 'native-base';
-import React from 'react';
+import React, {FC} from 'react';
 
 import {Header, Screen} from '@/components';
 import useHandleAuthentication from '@/hooks/useHandleAuthentication';
@@ -20,7 +19,7 @@ import {TouchableOpacity} from 'react-native';
 
 type LoginScreenProps = UnAuthenticatedStackNavigatorScreenProps<'Login'>;
 
-export const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
+export const LoginScreen: FC<LoginScreenProps> = ({navigation}) => {
   const {signIn} = useHandleAuthentication();
 
   const navigateToSignUpScreen = () => {
