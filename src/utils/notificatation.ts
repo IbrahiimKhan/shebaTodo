@@ -1,24 +1,17 @@
-// src/utils/notifications.ts
-import PushNotification from 'react-native-push-notification';
-import {PushNotificationIOS} from 'react-native';
 import {TaskProps} from '@/types/taskTypes';
+import {PushNotificationIOS} from 'react-native';
+import PushNotification from 'react-native-push-notification';
+import * as RootNavigation from '@/navigators/RootNavigation';
 
 export const configureNotifications = () => {
   PushNotification.configure({
-    onRegister: function (token: any) {
-      console.log('TOKEN:', token);
-    },
+    onRegister: function (_token: any) {},
     onNotification: function (notification: any) {
-      console.log('NOTIFICATION:', notification);
+      RootNavigation.navigate('ViewTask', notification?.data);
       notification.finish(PushNotificationIOS.FetchResult.NoData);
     },
-    onAction: function (notification: any) {
-      console.log('ACTION:', notification.action);
-      console.log('NOTIFICATION:', notification);
-    },
-    onRegistrationError: function (err: any) {
-      console.error(err.message, err);
-    },
+    onAction: function (_notification: any) {},
+    onRegistrationError: function (_err: any) {},
     permissions: {
       alert: true,
       badge: true,
@@ -49,8 +42,11 @@ export const scheduleTaskNotifications = (tasks: TaskProps[]) => {
         vibration: 300,
         playSound: true,
         soundName: 'default',
-        actions: '["Yes", "No"]',
         autoCancel: true,
+        data: {
+          ...task,
+          expiryDate: expiryDate.toISOString(),
+        },
       });
     }
   });

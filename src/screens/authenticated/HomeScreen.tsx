@@ -57,7 +57,7 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}) => {
     configureNotifications();
     scheduleTaskNotifications(tasks);
   }, [tasks]);
-
+  console.log(tasks);
   return (
     <Screen>
       <Header

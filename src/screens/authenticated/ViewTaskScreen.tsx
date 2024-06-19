@@ -127,6 +127,7 @@ export const ViewTaskScreen: FC<ViewTaskScreenProps> = ({
   navigation,
 }): ReactElement => {
   const task = route?.params as TaskProps;
+  console.log(task, 'what is task');
   const [selectedImages, setSelectedImages] = useState<string[]>(task.img);
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     new Date(task.expiryDate),
