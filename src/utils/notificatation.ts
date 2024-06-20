@@ -23,8 +23,8 @@ export const configureNotifications = () => {
 
   PushNotification.createChannel(
     {
-      channelId: 'com.pushnotification',
-      channelName: 'com.pushnotification',
+      channelId: 'com.shebaTodo',
+      channelName: 'com.shebaTodo',
     },
     (created: any) => console.log(`createChannel returned '${created}'`),
   );
@@ -35,7 +35,7 @@ export const scheduleTaskNotifications = (tasks: TaskProps[]) => {
     const expiryDate = new Date(task.expiryDate);
     if (expiryDate > new Date()) {
       PushNotification.localNotificationSchedule({
-        channelId: 'com.pushnotification',
+        channelId: 'com.shebaTodo',
         message: `Task "${task.title}" is due soon.`,
         date: expiryDate,
         vibrate: true,

@@ -100,7 +100,11 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}): ReactElement => {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           data={taskList}
-          ListEmptyComponent={() => <Text>No Task Found! Add one please</Text>}
+          ListEmptyComponent={() => (
+            <Text fontFamily="body" fontSize={15} color="danger.500">
+              No Task Found! Add one please
+            </Text>
+          )}
           renderItem={({item}) => <Task {...item} />}
           estimatedItemSize={200}
         />

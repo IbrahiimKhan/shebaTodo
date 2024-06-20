@@ -52,7 +52,7 @@ export const SignUpScreen: FC<SignUpScreenProps> = ({navigation}) => {
           }) => (
             <>
               <FormControl my={2} isInvalid={!!(errors.name && touched.name)}>
-                <FormControl.Label>Your Name</FormControl.Label>
+                <FormControl.Label>Your Name*</FormControl.Label>
                 <Input
                   py={3}
                   placeholder="Enter your name"
@@ -69,7 +69,7 @@ export const SignUpScreen: FC<SignUpScreenProps> = ({navigation}) => {
               </FormControl>
 
               <FormControl my={2} isInvalid={!!(errors.email && touched.email)}>
-                <FormControl.Label>Your Email</FormControl.Label>
+                <FormControl.Label>Your Email*</FormControl.Label>
                 <Input
                   py={3}
                   placeholder="Enter email"
@@ -88,7 +88,7 @@ export const SignUpScreen: FC<SignUpScreenProps> = ({navigation}) => {
               <FormControl
                 my={2}
                 isInvalid={!!(errors.password && touched.password)}>
-                <FormControl.Label>Your Password</FormControl.Label>
+                <FormControl.Label>Your Password*</FormControl.Label>
                 <Input
                   py={3}
                   placeholder="Enter password"

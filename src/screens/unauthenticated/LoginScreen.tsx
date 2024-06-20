@@ -52,7 +52,7 @@ export const LoginScreen: FC<LoginScreenProps> = ({navigation}) => {
           }) => (
             <>
               <FormControl my={3} isInvalid={!!(errors.email && touched.email)}>
-                <FormControl.Label>Email</FormControl.Label>
+                <FormControl.Label>Your Email*</FormControl.Label>
                 <Input
                   py={3}
                   placeholder="Enter email"
@@ -71,7 +71,7 @@ export const LoginScreen: FC<LoginScreenProps> = ({navigation}) => {
               <FormControl
                 my={3}
                 isInvalid={!!(errors.password && touched.password)}>
-                <FormControl.Label>Password</FormControl.Label>
+                <FormControl.Label>Your Password*</FormControl.Label>
                 <Input
                   py={3}
                   placeholder="Enter password"
