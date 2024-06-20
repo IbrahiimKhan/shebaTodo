@@ -26,7 +26,6 @@ const useHandleAuthentication = () => {
         });
 
         Toast.show({
-          type: 'success',
           text1: 'Signup Successful',
         });
         navigation.navigate('Login');

@@ -22,13 +22,15 @@ import {
   VStack,
 } from 'native-base';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
-import Octicons from 'react-native-vector-icons/Octicons';
+import {TouchableOpacity} from 'react-native';
+import Toast from 'react-native-toast-message';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface HomeScreenprops extends HomeStackScreenProps<'AddTask'> {}
 
 export const HomeScreen: FC<HomeScreenprops> = ({navigation}): ReactElement => {
   //states and variables
-  const {user} = useAuthStore();
+  const {user, onLogout} = useAuthStore();
   const tasks = useTaskStore(state => state.tasks);
   const [taskList, setTaskList] = useState<TaskProps[]>([]);
   const categories = ['All', 'Todo', 'Completed'];
@@ -51,6 +53,12 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}): ReactElement => {
 
   const navigateToAddTaskScreen = () => {
     navigation.navigate('AddTask');
+  };
+
+  //handle log out
+  const handleLogOut = () => {
+    onLogout();
+    Toast.show({text1: 'Log Out successfull'});
   };
 
   useEffect(() => {
@@ -82,7 +90,11 @@ export const HomeScreen: FC<HomeScreenprops> = ({navigation}): ReactElement => {
             </VStack>
           </HStack>
         )}
-        right={() => <Icon as={Octicons} name="bell" size="xl" />}
+        right={() => (
+          <TouchableOpacity onPress={handleLogOut}>
+            <Icon as={AntDesign} name="logout" color="danger.500" size="xl" />
+          </TouchableOpacity>
+        )}
       />
       <Box flex={1} mx={5}>
         <VStack py={5}>
