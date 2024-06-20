@@ -1,4 +1,3 @@
-// SignUpScreen.tsx
 import {Header, Screen} from '@/components';
 import useHandleAuthentication from '@/hooks/useHandleAuthentication';
 import {signupSchema} from '@/schema/validationSchema';

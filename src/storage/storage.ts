@@ -7,7 +7,6 @@ import {
   type StateStorage,
 } from 'zustand/middleware';
 
-// Create and Initialized the MMKV instance
 const storage = new MMKV();
 
 const zustandStorage: StateStorage = {
@@ -23,7 +22,6 @@ const zustandStorage: StateStorage = {
   },
 };
 
-/* All Async Storage Key's will resides here */
 enum STORAGE_KEYS {
   AUTH_TOKEN_KEY = 'authToken',
 }
